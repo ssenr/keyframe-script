@@ -1,9 +1,16 @@
 /*
- *  After Effects Keyframe Adjust Script
+ *  After Effects Keyframe Adjust Script: KAS
  *  Author: Ness
  *  License: MIT
  * */
 
-// Initialize Window
-var mainWindow = new Window("palette", "Keyframe Move Script")
+// UI
+var mainWindow = createUI();
+
+function createUI() {
+    var window = new Window('palette', 'KAS')
+    return window;
+}
+
+// Start
 mainWindow.show()
