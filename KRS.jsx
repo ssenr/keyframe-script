@@ -37,10 +37,12 @@ function KRS(thisObj) {
 		mainWindow.layout.resize();
 
 		// Initialize Dropdown List
+		var dropdownArray = [];
 		function populateList() {
 			var lengthOfList = mainWindow.grp.groupTwo.layerList.items.length;
 			if (lengthOfList > 0) {
 				for (var i = 0; i < lengthOfList; i++) {
+					dropdownArray = [];
 					mainWindow.grp.groupTwo.layerList.remove(
 						mainWindow.grp.groupTwo.layerList.items[0]
 					);
@@ -50,6 +52,7 @@ function KRS(thisObj) {
 			// Populate List
 			var numLayers = app.project.activeItem.numLayers;
 			for (var i = 0; i < numLayers; i++) {
+				dropdownArray.push(app.project.activeItem.layer(i + 1).name);
 				mainWindow.grp.groupTwo.layerList.add(
 					"item",
 					app.project.activeItem.layer(i + 1).name
@@ -70,34 +73,26 @@ function KRS(thisObj) {
 			populateList();
 		};
 
-		mainWindow.grp.groupOne.rearrangeKeyframes.onClick = function () {};
+		mainWindow.grp.groupOne.rearrangeKeyframes.onClick = function () {
+			// Get Keyrames for Time Remap
+			// app.project.item(index).layer(index).propertySpec.selectedKeys
+			var selectedLayer = mainWindow.grp.groupTwo.layerList.selection;
+			var indice = 0;
+
+			dropdownArray.forEach(checker);
+
+			function checker(value, index, array) {
+				if (value == selectedLayer) {
+					indice = index;
+				}
+			}
+
+			alert(indice);
+		};
 
 		// Return
 		return mainWindow;
 	}
-
-	/**
-	 * Util Functions
-	 */
-
-	function populateList(windowObj) {}
-
-	function getKeyframes() {
-		/**
-		 * AV Layer Handling
-		 * Check Precomp Time Remap Property
-		 */
-		var layer = app.project.activeItem.selectedLayers.timeRemapEnabled;
-
-		// AV Layer
-		// Check if timeRemap is enabled
-		return alert(layer);
-	}
-
-	function appendKeyframes() {
-		return undefined;
-	}
-
 	/**
 	 * Script Handler
 	 */
