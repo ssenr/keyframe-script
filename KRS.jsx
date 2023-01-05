@@ -37,15 +37,6 @@ function KRS(thisObj) {
 		mainWindow.layout.resize();
 
 		// Initialize Dropdown List
-		var lengthOfList = mainWindow.grp.groupTwo.layerList.length;
-		if (lengthOfList > 0) {
-			for (var i = 0; i < lengthOfList; i++) {
-				mainWindow.grp.groupTwo.layerList.remove(
-					mainWindow.grp.groupTwo.layerList.items[0]
-				);
-			}
-		}
-
 		// Populate List
 		var numLayers = app.project.activeItem.numLayers;
 		for (var i = 0; i < numLayers; i++) {
@@ -63,7 +54,7 @@ function KRS(thisObj) {
 		};
 
 		mainWindow.grp.groupOne.refreshList.onClick = function () {
-			var lengthOfList = mainWindow.grp.groupTwo.layerList.length;
+			var lengthOfList = mainWindow.grp.groupTwo.layerList.items.length;
 			if (lengthOfList > 0) {
 				for (var i = 0; i < lengthOfList; i++) {
 					mainWindow.grp.groupTwo.layerList.remove(
@@ -76,12 +67,14 @@ function KRS(thisObj) {
 			var numLayers = app.project.activeItem.numLayers;
 			for (var i = 0; i < numLayers; i++) {
 				mainWindow.grp.groupTwo.layerList.add(
+					"item",
 					app.project.activeItem.layer(i + 1).name
 				);
 			}
 		};
 
 		mainWindow.grp.groupOne.rearrangeKeyframes.onClick = function () {};
+
 		// Return
 		return mainWindow;
 	}
@@ -89,26 +82,6 @@ function KRS(thisObj) {
 	/**
 	 * Util Functions
 	 */
-
-	function populateLayerList() {
-		// Clear List
-		var lengthOfList = mainWindow.grp.groupTwo.layerList.length;
-		if (lengthOfList > 0) {
-			for (var i = 0; i < lengthOfList; i++) {
-				mainWindow.grp.groupTwo.layerList.remove(
-					mainWindow.grp.groupTwo.layerList.items[0]
-				);
-			}
-		}
-
-		// Populate List
-		var numLayers = app.project.activeItem.numLayers;
-		for (var i = 0; i < numLayers; i++) {
-			mainWindow.grp.groupTwo.layerList.add(
-				app.project.activeItem.layer(i + 1).name
-			);
-		}
-	}
 
 	function getKeyframes() {
 		/**
