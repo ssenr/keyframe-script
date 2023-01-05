@@ -37,23 +37,7 @@ function KRS(thisObj) {
 		mainWindow.layout.resize();
 
 		// Initialize Dropdown List
-		// Populate List
-		var numLayers = app.project.activeItem.numLayers;
-		for (var i = 0; i < numLayers; i++) {
-			mainWindow.grp.groupTwo.layerList.add(
-				"item",
-				app.project.activeItem.layer(i + 1).name
-			);
-		}
-
-		/**
-		 * UI Events
-		 */
-		mainWindow.onResizing = mainWindow.onResize = function () {
-			this.layout.resize();
-		};
-
-		mainWindow.grp.groupOne.refreshList.onClick = function () {
+		function populateList() {
 			var lengthOfList = mainWindow.grp.groupTwo.layerList.items.length;
 			if (lengthOfList > 0) {
 				for (var i = 0; i < lengthOfList; i++) {
@@ -71,6 +55,19 @@ function KRS(thisObj) {
 					app.project.activeItem.layer(i + 1).name
 				);
 			}
+			mainWindow.grp.groupTwo.layerList.selection = 0;
+		}
+		populateList();
+
+		/**
+		 * UI Events
+		 */
+		mainWindow.onResizing = mainWindow.onResize = function () {
+			this.layout.resize();
+		};
+
+		mainWindow.grp.groupOne.refreshList.onClick = function () {
+			populateList();
 		};
 
 		mainWindow.grp.groupOne.rearrangeKeyframes.onClick = function () {};
@@ -82,6 +79,8 @@ function KRS(thisObj) {
 	/**
 	 * Util Functions
 	 */
+
+	function populateList(windowObj) {}
 
 	function getKeyframes() {
 		/**
