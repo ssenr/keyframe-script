@@ -80,7 +80,15 @@ function KRS(thisObj) {
 			var selectedLayers = app.project.activeItem.selectedLayers;
 			for (var i = 0; i < selectedLayers.length; i++) {
 				if (selectedLayers[i].timeRemapEnabled) {
-					alert("Time Remap Enabled");
+					if (
+						selectedLayers[i].property("Time Remap").selectedKeys !=
+						[]
+					) {
+						alert(
+							selectedLayers[i].property("Time Remap")
+								.selectedKeys
+						);
+					}
 				}
 			}
 		};
