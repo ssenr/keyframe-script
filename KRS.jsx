@@ -76,18 +76,13 @@ function KRS(thisObj) {
 		mainWindow.grp.groupOne.rearrangeKeyframes.onClick = function () {
 			// Get Keyrames for Time Remap
 			// app.project.item(index).layer(index).propertySpec.selectedKeys
-			var selectedLayer = mainWindow.grp.groupTwo.layerList.selection;
-			var indice = 0;
-
-			dropdownArray.forEach(checker);
-
-			function checker(value, index, array) {
-				if (value == selectedLayer) {
-					indice = index;
+			// var selectedLayer = mainWindow.grp.groupTwo.layerList.selection;
+			var selectedLayers = app.project.activeItem.selectedLayers;
+			for (var i = 0; i < selectedLayers.length; i++) {
+				if (selectedLayers[i].timeRemapEnabled) {
+					alert("Time Remap Enabled");
 				}
 			}
-
-			alert(indice);
 		};
 
 		// Return
