@@ -79,16 +79,12 @@ function KRS(thisObj) {
 			// var selectedLayer = mainWindow.grp.groupTwo.layerList.selection;
 			var selectedLayers = app.project.activeItem.selectedLayers;
 			for (var i = 0; i < selectedLayers.length; i++) {
-				if (selectedLayers[i].timeRemapEnabled) {
-					if (
-						selectedLayers[i].property("Time Remap").selectedKeys !=
-						[]
-					) {
-						alert(
-							selectedLayers[i].property("Time Remap")
-								.selectedKeys
-						);
-					}
+				if (
+					selectedLayers[i].timeRemapEnabled &&
+					selectedLayers[i].property("Time Remap").selectedKeys != []
+				) {
+					var numKeys = selectedLayers.property("Time Remap").numKeys;
+					alert(numKeys);
 				}
 			}
 		};
